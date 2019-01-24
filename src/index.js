@@ -1,49 +1,49 @@
-import { css, getRegisteredStyles } from 'emotion'
-import assign from 'nano-assign'
-import { STYLES_KEY } from 'emotion-utils'
+import { css, getRegisteredStyles } from 'emotion';
+import assign from 'nano-assign';
+import { STYLES_KEY } from 'emotion-utils';
 
 function stringifyClass(klass) {
   if (Array.isArray(klass)) {
-    return klass.join(' ')
+    return klass.join(' ');
   }
   if (typeof klass === 'object') {
     return Object.keys(klass)
       .filter(key => Boolean(klass[key]))
-      .join(' ')
+      .join(' ');
   }
-  return klass
+  return klass;
 }
 
 export default (tag, options) => {
-  let staticClassName
-  let identifierName
-  let stableClassName
-  let propsDefinitions
+  let staticClassName;
+  let identifierName;
+  let stableClassName;
+  let propsDefinitions;
   if (options !== undefined) {
-    staticClassName = options.e
-    identifierName = options.label
-    stableClassName = options.target
-    propsDefinitions = options.props
+    staticClassName = options.e;
+    identifierName = options.label;
+    stableClassName = options.target;
+    propsDefinitions = options.props;
   }
-  const isReal = tag.__emotion_real === tag
+  const isReal = tag.__emotion_real === tag;
   const baseTag =
-    staticClassName === undefined ? (isReal && tag.__emotion_base) || tag : tag
+    staticClassName === undefined ? (isReal && tag.__emotion_base) || tag : tag;
 
   return (...args) => {
     const styles =
-      isReal && tag[STYLES_KEY] !== undefined ? tag[STYLES_KEY].slice(0) : []
+      isReal && tag[STYLES_KEY] !== undefined ? tag[STYLES_KEY].slice(0) : [];
     if (identifierName !== undefined) {
-      styles.push(`label:${identifierName};`)
+      styles.push(`label:${identifierName};`);
     }
     if (staticClassName === undefined) {
       if (args[0] === null || args[0].raw === undefined) {
-        styles.push.apply(styles, args)
+        styles.push.apply(styles, args);
       } else {
-        styles.push(args[0][0])
-        const len = args.length
-        let i = 1
+        styles.push(args[0][0]);
+        const len = args.length;
+        let i = 1;
         for (; i < len; i++) {
-          styles.push(args[i], args[0][i])
+          styles.push(args[i], args[0][i]);
         }
       }
     }
@@ -53,18 +53,18 @@ export default (tag, options) => {
       functional: true,
       inject: {
         theme: {
-          default: null
-        }
+          default: null,
+        },
       },
       props: propsDefinitions,
       render(h, { data, children, props, injections }) {
-        let className = ''
-        const classInterpolations = []
-        const exisingClassName = stringifyClass(data.class)
-        const attrs = {}
+        let className = '';
+        const classInterpolations = [];
+        const exisingClassName = stringifyClass(data.class);
+        const attrs = {};
         for (const key in data.attrs) {
           if (key[0] !== '$') {
-            attrs[key] = data.attrs[key]
+            attrs[key] = data.attrs[key];
           }
         }
 
@@ -72,31 +72,31 @@ export default (tag, options) => {
           if (staticClassName === undefined) {
             className += getRegisteredStyles(
               classInterpolations,
-              exisingClassName
-            )
+              exisingClassName,
+            );
           } else {
-            className += `${exisingClassName} `
+            className += `${exisingClassName} `;
           }
         }
         if (staticClassName === undefined) {
           const ctx = {
-            mergedProps: assign({ theme: injections.theme }, props)
-          }
-          className += css.apply(ctx, styles.concat(classInterpolations))
+            mergedProps: assign({ theme: injections.theme }, props),
+          };
+          className += css.apply(ctx, styles.concat(classInterpolations));
         } else {
-          className += staticClassName
+          className += staticClassName;
         }
         if (stableClassName !== undefined) {
-          className += ` ${stableClassName}`
+          className += ` ${stableClassName}`;
         }
 
-        return h(tag, assign({}, data, { attrs, class: className }), children)
-      }
-    }
+        return h(tag, assign({}, data, { attrs, class: className }), children);
+      },
+    };
 
-    Styled[STYLES_KEY] = styles
-    Styled.__emotion_base = baseTag
-    Styled.__emotion_real = Styled
+    Styled[STYLES_KEY] = styles;
+    Styled.__emotion_base = baseTag;
+    Styled.__emotion_real = Styled;
     Object.defineProperty(Styled, 'toString', {
       enumerable: false,
       value() {
@@ -104,14 +104,14 @@ export default (tag, options) => {
           process.env.NODE_ENV !== 'production' &&
           stableClassName === undefined
         ) {
-          return 'NO_COMPONENT_SELECTOR'
+          return 'NO_COMPONENT_SELECTOR';
         }
-        return `.${stableClassName}`
-      }
-    })
+        return `.${stableClassName}`;
+      },
+    });
 
-    return Styled
-  }
-}
+    return Styled;
+  };
+};
 
-export * from 'emotion'
+export * from 'emotion';
