@@ -1,5 +1,6 @@
 import { css, getRegisteredStyles } from 'emotion';
 import assign from 'nano-assign';
+import htmlTags from 'html-tags';
 import { STYLES_KEY } from 'emotion-utils';
 
 function stringifyClass(klass) {
@@ -14,7 +15,7 @@ function stringifyClass(klass) {
   return klass;
 }
 
-export default (tag, options) => {
+const _styled = (tag, options) => {
   let staticClassName;
   let identifierName;
   let stableClassName;
@@ -114,4 +115,11 @@ export default (tag, options) => {
   };
 };
 
+const styled = tag => _styled(tag);
+
+htmlTags.forEach(htmlTag => {
+  styled[htmlTag] = _styled(htmlTag);
+});
+
+export default styled;
 export * from 'emotion';
