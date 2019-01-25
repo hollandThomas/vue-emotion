@@ -25,30 +25,19 @@
   "author": "EGOIST <0x142857@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "babel-plugin-emotion": "^9.1.0",
+    "babel-plugin-emotion": "^10.0.6",
     "bili": "^3.0.13",
-    "emotion": "^9.1.0",
-    "eslint-config-rem": "^3.0.0",
     "markdown-toc": "^1.1.0",
     "poi": "^10.0.0-beta.8",
-    "prettier": "^1.16.1",
-    "react": "^15.6.1",
-    "xo": "^0.18.0"
-  },
-  "xo": {
-    "extends": "rem/prettier",
-    "ignores": [
-      "example/**"
-    ],
-    "rules": {
-      "camelcase": 0
-    }
+    "prettier": "^1.16.1"
   },
   "peerDependencies": {
     "emotion": "^9.0.0"
   },
   "dependencies": {
+    "emotion": "^10.0.6",
     "emotion-utils": "^9.1.0",
+    "html-tags": "^2.0.0",
     "nano-assign": "^1.0.0"
   }
 }
