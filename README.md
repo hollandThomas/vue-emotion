@@ -28,7 +28,7 @@ Create your styled component:
 ```js
 import styled from 'vue-emotion'
 
-const Button = styled('button')`
+const Button = styled.button`
   font-size: 15px;
 `
 

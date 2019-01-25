@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import styled from 'vue-emotion';
 
-const Button = styled('button')`
+const Button = styled.button`
   color: ${props => props.theme.color};
   font-size: 1rem;
 `;
@@ -12,7 +12,7 @@ const BlueButton = styled(Button)`
   background: yellow;
 `;
 
-const Container = styled('div')`
+const Container = styled.div`
   ${BlueButton.toString()} {
     color: orange;
   }
@@ -20,6 +20,11 @@ const Container = styled('div')`
 
 new Vue({
   el: '#app',
+  components: {
+    Button,
+    BlueButton,
+    Container,
+  },
   data: {
     count: 0,
   },
