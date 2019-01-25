@@ -1,9 +1,9 @@
 {
   "name": "vue-emotion",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Seamlessly use emotion (CSS-in-JS) with Vue.js",
   "repository": {
-    "url": "EGOIST/vue-emotion",
+    "url": "hollandThomas/vue-emotion",
     "type": "git"
   },
   "module": "dist/vue-emotion.es.js",
@@ -14,25 +14,21 @@
     "dist"
   ],
   "scripts": {
-    "test": "npm run lint && echo 'no tests!'",
-    "lint": "xo",
+    "test": "echo 'no tests!'",
     "prepublishOnly": "npm run build",
     "build": "bili --format umd,cjs,es,umd-min --module-name emotionVue",
-    "example": "poi",
-    "build:example": "poi build",
     "toc": "markdown-toc -i README.md"
   },
-  "author": "EGOIST <0x142857@gmail.com>",
+  "author": "thomas.holland.dev@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-plugin-emotion": "^10.0.6",
     "bili": "^3.0.13",
     "markdown-toc": "^1.1.0",
-    "poi": "^10.0.0-beta.8",
     "prettier": "^1.16.1"
   },
   "peerDependencies": {
-    "emotion": "^9.0.0"
+    "emotion": "^10.0.6"
   },
   "dependencies": {
     "emotion": "^10.0.6",
